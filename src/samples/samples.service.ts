@@ -39,22 +39,6 @@ export class SamplesService {
     return sample;
   }
 
-  async updateSample(
-    id: number,
-    field: string,
-    update: string,
-  ): Promise<Sample> {
-    const sample = await this.getSampleById(id);
-    if (field === 'diseaseTerm') {
-      sample.donorCount = update;
-    } else if (field === 'materialType') {
-      sample.materialType = update;
-    }
-    sample.lastUpdated = new Date().toISOString().split('T')[0];
-    await this.samplesRepository.save(sample);
-    return sample;
-  }
-
   async deleteSample(id: number): Promise<void> {
     const result = await this.samplesRepository.delete(id);
     if (result.affected === 0) {

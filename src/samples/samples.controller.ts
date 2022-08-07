@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
   UsePipes,
   ValidationPipe,
@@ -31,15 +30,6 @@ export class SamplesController {
   @UsePipes(ValidationPipe)
   createSample(@Body() createSampleDto: CreateSampleDto): Promise<Sample> {
     return this.samplesService.createSample(createSampleDto);
-  }
-
-  @Patch('/:id')
-  updateSample(
-    @Param('id') id: number,
-    @Body('field') field: string,
-    @Body('update') update: string,
-  ): Promise<Sample> {
-    return this.samplesService.updateSample(id, field, update);
   }
 
   @Delete('/:id')
